@@ -20,7 +20,7 @@ jobs:
     
     - name: Decrypt Application properties
       run: |
-           echo "${{ secrets.SUPER_SECRET }}" >> ansiblekey
+           echo "${{ secrets.ANSIBLE_KEY }}" >> ansiblekey
            ansible-vault decrypt src/main/resources/application.properties --vault-pass-file ansiblekey
            ansible-vault decrypt src/main/resources/application-prod.properties --vault-pass-file ansiblekey
                       
