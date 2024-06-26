@@ -17,7 +17,14 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-        
+    
+    - name: Decrypt Application properties
+      run: |
+           echo "${{ secrets.SUPER_SECRET }}" >> ansiblekey
+           ansible-vault decrypt src/main/resources/application.properties --vault-pass-file ansiblekey
+           ansible-vault decrypt src/main/resources/application-prod.properties --vault-pass-file ansiblekey
+                      
+
     - name: Build with Maven
       run: mvn clean install
 
